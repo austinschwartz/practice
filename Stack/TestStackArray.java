@@ -20,7 +20,7 @@ public class TestStackArray {
             System.out.println("Test 'test2' passes!");
             return;
         }
-        throw new Exception("asd");
+        throw new Exception("No exception was thrown when overloading stack");
     }
 
     public void test3() throws Exception {
@@ -31,7 +31,7 @@ public class TestStackArray {
             System.out.println("Test 'test3' passes!");
             return;
         }
-        throw new Exception("asd");
+        throw new Exception("No exception was thrown when popping empty stack");
     }
 
     public static void main(String[] args) {
