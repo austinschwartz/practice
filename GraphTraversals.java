@@ -78,6 +78,33 @@ public class GraphTraversals
         System.out.println();
     }
 
+    public static void PrintVerticalOrder(BinaryTree root)
+    {
+        if (root == null) return;
+        Stack<BinaryTree> stack = new Stack<BinaryTree>();
+        ArrayDeque<BinaryTree> queue = new ArrayDeque<BinaryTree>();
+        BinaryTree temp = root;
+
+        while (temp != null)
+        {
+            stack.push(temp);
+            temp = temp.left;
+        }
+
+        while (!stack.isEmpty())
+        {
+            temp = stack.pop();
+            if (temp.right != null)
+            {
+                queue.add(temp.right);
+            }
+            System.out.print(temp.val + " ");
+        }
+
+        while (!queue.isEmpty())
+            PrintVerticalOrder(queue.pollFirst());
+    }
+
     public static void PrintGivenLevel(BinaryTree root, int level, int zigzag)
     {
         if (root == null)
@@ -110,6 +137,36 @@ public class GraphTraversals
         return;
     }
 
+    public static void PrintPreOrder(BinaryTree root)
+    {
+        if (root != null)
+        {
+            System.out.print(root.val + " ");
+            PrintPreOrder(root.left);
+            PrintPreOrder(root.right);
+        }
+    }
+
+    public static void PrintInOrder(BinaryTree root)
+    {
+        if (root != null)
+        {
+            PrintInOrder(root.left);
+            System.out.print(root.val + " ");
+            PrintInOrder(root.right);
+        }
+    }
+
+    public static void PrintPostOrder(BinaryTree root)
+    {
+        if (root != null)
+        {
+            PrintPostOrder(root.left);
+            PrintPostOrder(root.right);
+            System.out.print(root.val + " ");
+        }
+    }
+
     public static void main(String[] args)
     {
         BinaryTree root  = newNode(15);
@@ -138,10 +195,26 @@ public class GraphTraversals
         node9.right = node11;
 
         System.out.println("Tree height: " + height(root));
-        System.out.println("Level Order");
+
+        System.out.println("Pre-order");
+        PrintPreOrder(root);
+
+        System.out.println("\nIn-order");
+        PrintInOrder(root);
+
+        System.out.println("\nPost-order:");
+        PrintPostOrder(root);
+
+
+        System.out.println("\nLevel Order");
         PrintLevelOrder(root);
         PrintLevelOrder2(root);
+
         System.out.println("ZigZag Order");
         PrintZigZagOrder(root);
+
+        System.out.println("Vertical Order");
+        PrintVerticalOrder(root);
+
     }
 }
